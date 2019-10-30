@@ -1,7 +1,7 @@
 package guru.springframework.services;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,6 +36,8 @@ public class RecipeServiceImplTest {
         when(recipeService.getRecipes()).thenReturn(recipeData);
 
         Set<Recipe> recipes = recipeService.getRecipes();
+
         assertEquals(recipes.size(), 1);
+        verify(recipeRepository, times(1)).findAll();
     }
 }
